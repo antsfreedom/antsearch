@@ -1,0 +1,14 @@
+{
+    "name": "antsfree/antsearch",
+    "description": "xuweizeng",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "徐炜增",
+            "email": "xuweizeng@hoge.cn"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
