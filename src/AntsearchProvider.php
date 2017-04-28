@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\AntSearch;
+namespace Antsfree;
 
 use Illuminate\Support\ServiceProvider;
 

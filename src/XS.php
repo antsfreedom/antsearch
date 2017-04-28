@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\AntSearch;
+namespace Antsfree;
 
 class XS
 {
