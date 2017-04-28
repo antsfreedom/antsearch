@@ -29,10 +29,16 @@ class XS
         return new \XSDocument;
     }
 
-    public function addNewIndex($data)
+    public function addIndex($data)
     {
         $doc = $this->getDocumentInstance();
         $doc->setFields($data);
         $this->index()->add($doc)->flushIndex();
+    }
+
+    public function updateIndex()
+    {
+        $a = 1;
+        return $a;
     }
 }
