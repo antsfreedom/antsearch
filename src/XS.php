@@ -36,10 +36,15 @@ class Xun
         $this->index()->add($doc)->flushIndex();
     }
 
-    public function updateIndex()
+    public function updateIndex($data)
     {
-        $a = 1;
+        $doc = $this->getDocumentInstance();
+        $doc->setFields($data);
+        $this->index()->update($data)->flushIndex();
+    }
 
-        return $a;
+    public function cleanIndex()
+    {
+        $this->index()->clean();
     }
 }
