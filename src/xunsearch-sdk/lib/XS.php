@@ -1,4 +1,5 @@
 <?php
+namespace Antsfree\XunSearch;
 /**
  * Xunsearch PHP-SDK 引导文件
  *
@@ -189,7 +190,7 @@ define('XS_PACKAGE_TARNAME',	"xunsearch");
 define('XS_PACKAGE_URL',	"");
 define('XS_PACKAGE_VERSION',	"1.4.9");
 define('XS_LIB_ROOT', dirname(__FILE__));
-class XSException extends Exception
+class XSException extends \Exception
 {
 	public function __toString()
 	{
@@ -553,8 +554,8 @@ function xsErrorHandler($errno, $error, $file, $line)
 	}
 	return false;
 }
-set_error_handler('xsErrorHandler');
-class XSDocument implements ArrayAccess, IteratorAggregate
+//set_error_handler('xsErrorHandler');
+class XSDocument
 {
 	private $_data;
 	private $_terms, $_texts;
@@ -740,7 +741,7 @@ class XSDocument implements ArrayAccess, IteratorAggregate
 		return XS::convert($value, $to, $from);
 	}
 }
-class XSFieldScheme implements IteratorAggregate
+class XSFieldScheme
 {
 	const MIXED_VNO = 255;
 	private $_fields = array();

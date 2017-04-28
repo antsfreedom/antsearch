@@ -1,14 +1,17 @@
 <?php
 namespace Antsfree;
 
-class XS
+use Antsfree\XunSearch\XS;
+use Antsfree\XunSearch\XSDocument as Doc;
+
+class Xun
 {
     protected $xs;
 
     public function __construct()
     {
-        $ini_file = __DIR__."/config/xs.ini";
-        $this->xs = new \XS($ini_file);
+        $ini_file = __DIR__ . "/config/xs.ini";
+        $this->xs = new XS($ini_file);
     }
 
     public function index()
@@ -21,12 +24,9 @@ class XS
         return $this->xs->search;
     }
 
-    /**
-     * Get new document instance
-     * @return \XSDocument
-     */
-    public function getDocumentInstance(){
-        return new \XSDocument;
+    public function getDocumentInstance()
+    {
+        return new Doc();
     }
 
     public function addIndex($data)
@@ -39,6 +39,7 @@ class XS
     public function updateIndex()
     {
         $a = 1;
+
         return $a;
     }
 }
