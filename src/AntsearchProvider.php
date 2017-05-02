@@ -23,7 +23,7 @@ class AntsearchProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('antsearch', function() {
-            return new Xun();
+            return new Search();
         });
     }
 }
