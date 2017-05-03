@@ -73,8 +73,7 @@ class AntsearchService
      */
     public function updateIndex($data)
     {
-        $doc = $this->getDocumentInstance();
-        $doc->setFields($data);
+        $this->doc->setFields($data);
         $this->index()->update($data)->flushIndex();
     }
 
@@ -103,10 +102,9 @@ class AntsearchService
      */
     public function rebuildIndex($data)
     {
-        $doc = $this->getDocumentInstance();
-        $doc->setFields($data);
+        $this->doc->setFields($data);
         $this->index()->beginRebuild();
-        $this->index()->add($doc);
+        $this->index()->add($this->doc);
         $this->index()->endRebuild();
     }
 
