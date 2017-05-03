@@ -1,10 +1,11 @@
 <?php
 namespace Antsfree\Antsearch;
 
-use Antsfree\Antsearch\Sdk\XS;
-use Antsfree\Antsearch\Sdk\XSDocument as Doc;
+require __DIR__ ."/sdk/lib/XS.php";
+//use Antsfree\Antsearch\Sdk\XS;
+//use Antsfree\Antsearch\Sdk\XSDocument as Doc;
 
-class SearchService
+class AntsearchService
 {
     /**
      * 表示: 全文搜索模式
@@ -23,10 +24,13 @@ class SearchService
 
     protected $xs;
 
+    protected $doc;
+
     public function __construct()
     {
         $ini_file = __DIR__ . "/config/xs.ini";
-        $this->xs = new XS($ini_file);
+        $this->xs = new \XS($ini_file);
+        $this->doc = new \XSDocument();
     }
 
     /**
@@ -49,15 +53,6 @@ class SearchService
         return $this->xs->search;
     }
 
-    /**
-     * 索引文档实例化
-     *
-     * @return Doc
-     */
-    public function getDocumentInstance()
-    {
-        return new Doc();
-    }
 
     /**
      * 增加索引方法
@@ -66,9 +61,9 @@ class SearchService
      */
     public function addIndex($data)
     {
-        $doc = $this->getDocumentInstance();
-        $doc->setFields($data);
-        $this->index()->add($doc)->flushIndex();
+
+        $this->doc->setFields($data);
+        $this->index()->add($this->doc)->flushIndex();
     }
 
     /**
