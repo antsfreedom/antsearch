@@ -1,9 +1,8 @@
 <?php
 namespace Antsfree\Antsearch;
 
-require __DIR__ ."/sdk/lib/XS.php";
-//use Antsfree\Antsearch\Sdk\XS;
-//use Antsfree\Antsearch\Sdk\XSDocument as Doc;
+use Antsfree\Antsearch\Sdk\XS;
+use Antsfree\Antsearch\Sdk\XSDocument as Doc;
 
 class AntsearchService
 {
@@ -24,13 +23,10 @@ class AntsearchService
 
     protected $xs;
 
-    protected $doc;
-
     public function __construct()
     {
         $ini_file = __DIR__ . "/config/xs.ini";
-        $this->xs = new \XS($ini_file);
-        $this->doc = new \XSDocument();
+        $this->xs = new XS($ini_file);
     }
 
     /**
@@ -53,6 +49,15 @@ class AntsearchService
         return $this->xs->search;
     }
 
+    /**
+     * 索引文档实例化
+     *
+     * @return Doc
+     */
+    public function getDocumentInstance()
+    {
+        return new Doc();
+    }
 
     /**
      * 增加索引方法
@@ -61,9 +66,9 @@ class AntsearchService
      */
     public function addIndex($data)
     {
-
-        $this->doc->setFields($data);
-        $this->index()->add($this->doc)->flushIndex();
+        $doc = $this->getDocumentInstance();
+        $doc->setFields($data);
+        $this->index()->add($doc)->flushIndex();
     }
 
     /**
@@ -73,7 +78,8 @@ class AntsearchService
      */
     public function updateIndex($data)
     {
-        $this->doc->setFields($data);
+        $doc = $this->getDocumentInstance();
+        $doc->setFields($data);
         $this->index()->update($data)->flushIndex();
     }
 
@@ -92,6 +98,7 @@ class AntsearchService
      */
     public function cleanIndex()
     {
+        return 222;
         $this->index()->clean();
     }
 
@@ -102,9 +109,10 @@ class AntsearchService
      */
     public function rebuildIndex($data)
     {
-        $this->doc->setFields($data);
+        $doc = $this->getDocumentInstance();
+        $doc->setFields($data);
         $this->index()->beginRebuild();
-        $this->index()->add($this->doc);
+        $this->index()->add($doc);
         $this->index()->endRebuild();
     }
 
