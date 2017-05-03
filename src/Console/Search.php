@@ -10,7 +10,7 @@ class Search extends Command
      *
      * @var string
      */
-    protected $signature = 'antsearch:search {key}';
+    protected $signature = 'search:search {key}';
 
     /**
      * The console command description.

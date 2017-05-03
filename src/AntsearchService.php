@@ -4,7 +4,7 @@ namespace Antsfree\Antsearch;
 use Antsfree\Antsearch\Sdk\XS;
 use Antsfree\Antsearch\Sdk\XSDocument as Doc;
 
-class SearchService
+class AntsearchService
 {
     /**
      * 表示: 全文搜索模式
@@ -98,6 +98,7 @@ class SearchService
      */
     public function cleanIndex()
     {
+        return 222;
         $this->index()->clean();
     }
 
