@@ -1,10 +1,10 @@
 <?php
-namespace Antsfree\Antsearch\Src;
+namespace Antsfree\Antsearch;
 
-use Antsfree\Antsearch\Xs\XS;
-use Antsfree\Antsearch\Xs\XSDocument as Doc;
+use Antsfree\Antsearch\Sdk\XS;
+use Antsfree\Antsearch\Sdk\XSDocument as Doc;
 
-class Search
+class SearchService
 {
     /**
      * 表示: 全文搜索模式

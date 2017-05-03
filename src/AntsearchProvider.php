@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\Antsearch\Src;
+namespace Antsfree\Antsearch;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +23,7 @@ class AntsearchProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('antsearch', function() {
-            return new Search();
+            return new SearchService();
         });
     }
 }

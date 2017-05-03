@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\Antsearch\Src;
+namespace Antsfree\Antsearch;
 
 use Illuminate\Support\Facades\Facade;
 

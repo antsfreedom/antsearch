@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\Antsearch\Src\Commands;
+namespace Antsfree\Antsearch\Console;
 
 use Illuminate\Console\Command;
 
@@ -28,6 +28,6 @@ class Search extends Command
     {
         $key = $this->argument('key');
 
-
+        echo $key;
     }
 }
