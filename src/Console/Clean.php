@@ -4,14 +4,14 @@ namespace Antsfree\Antsearch\Console;
 use Illuminate\Console\Command;
 use Antsfree\Antsearch\Antsearch as Antsearch;
 
-class Search extends Command
+class Clean extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'xunsearch:search {key}';
+    protected $signature = 'xunsearch:clean';
 
     /**
      * The console command description.
@@ -27,7 +27,11 @@ class Search extends Command
      */
     public function handle()
     {
-        $key = $this->argument('key');
-        $res = Antsearch::searchIndex($key);
+        $res = Antsearch::cleanIndex();
+        if ($res) {
+            echo "Clean Index Success !";
+        }else{
+            echo "Service Unavaiable !";
+        }
     }
 }

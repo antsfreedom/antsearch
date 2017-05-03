@@ -72,6 +72,16 @@ class AntsearchService
     }
 
     /**
+     * 删除指定索引方法
+     *
+     * @param $data
+     */
+    public function deleteIndex($data)
+    {
+        $this->index()->del($data)->flushIndex();
+    }
+
+    /**
      * 更新索引方法
      *
      * @param $data
@@ -83,37 +93,74 @@ class AntsearchService
         $this->index()->update($data)->flushIndex();
     }
 
-    /**
-     * 删除指定索引方法
-     *
-     * @param $data
-     */
-    public function deleteIndex($data)
-    {
-        $this->index()->del($data)->flushIndex();
-    }
 
     /**
      * 清空索引方法
      */
     public function cleanIndex()
     {
-        return 222;
         $this->index()->clean();
+        // 查询剩余索引数量
+        $total = $this->getIndexTotalNum() ?: 0;
+        if ($total) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
-     * 重建索引方法
+     * 完全重建索引方法{暂不开放使用}
      *
      * @param $data
      */
-    public function rebuildIndex($data)
+    protected function rebuildIndex($data)
     {
         $doc = $this->getDocumentInstance();
         $doc->setFields($data);
         $this->index()->beginRebuild();
         $this->index()->add($doc);
         $this->index()->endRebuild();
+    }
+
+    /**
+     * 获取索引总数
+     *
+     * @return mixed
+     */
+    public function getIndexTotalNum()
+    {
+        $total = $this->search()->dbTotal();
+
+        return $total;
+    }
+
+    /**
+     * 获取热词,默认选取本周
+     * {建议自动收录实现一周一次的自动收录}
+     * {内含搜索频次}
+     *
+     * @return array
+     */
+    public function getHotWordsWithRate()
+    {
+        // 获取热词,默认最大 50 个.currnum 表示本周
+        $words = $this->search()->getHotQuery(self::MAX_HOT_WORD_NUM, 'currnum') ?: [];
+
+        return $words;
+    }
+
+    /**
+     * 获取搜索内容匹配数量
+     *
+     * @param $text
+     * @return int
+     */
+    public function getMatchNum($text)
+    {
+        $count = $this->search()->setQuery($text)->count() ?: 0;
+
+        return $count;
     }
 
     /**
@@ -133,44 +180,6 @@ class AntsearchService
         } else {
             $this->search()->search('title:' . $search_text);
         }
-    }
-
-    /**
-     * 获取索引总数
-     *
-     * @return mixed
-     */
-    public function getIndexTotalNum()
-    {
-        $total = $this->search()->dbTotal();
-
-        return $total;
-    }
-
-    /**
-     * 获取热词
-     *
-     * @return array
-     */
-    public function getHotWords()
-    {
-        // 获取热词,默认最大 50 个.currnum 表示本周
-        $words = $this->search()->getHotQuery(self::MAX_HOT_WORD_NUM, 'currnum') ?: [];
-
-        return $words;
-    }
-
-    /**
-     * 获取搜索内容匹配数量
-     *
-     * @param $text
-     * @return int
-     */
-    public function getMatchNum($text)
-    {
-        $count = $this->search()->setQuery($text)->count() ?: 0;
-
-        return $count;
     }
 
 }
