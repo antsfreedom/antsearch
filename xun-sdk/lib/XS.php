@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\XunSearch;
+namespace Antsfree\Antsearch\Xs;
 /**
  * Xunsearch PHP-SDK 引导文件
  *

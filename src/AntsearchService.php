@@ -1,8 +1,8 @@
 <?php
-namespace Antsfree;
+namespace Antsfree\Antsearch\Src;
 
-use Antsfree\XunSearch\XS;
-use Antsfree\XunSearch\XSDocument as Doc;
+use Antsfree\Antsearch\Xs\XS;
+use Antsfree\Antsearch\Xs\XSDocument as Doc;
 
 class Search
 {

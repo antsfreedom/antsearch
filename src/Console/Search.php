@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\Commands;
+namespace Antsfree\Antsearch\Src\Commands;
 
 use Illuminate\Console\Command;
 

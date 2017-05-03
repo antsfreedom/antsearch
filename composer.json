@@ -14,7 +14,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Antsfree\\": "src/"
+            "Antsfree\\Antsearch": "vendor/antsfree/antsearch/"
         }
     }
 }

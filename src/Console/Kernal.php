@@ -1,5 +1,5 @@
 <?php
-namespace Antsfree\Commands;
+namespace Antsfree\Antsearch\Src\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Antsfree\Commands\Search::class,
+        \Antsfree\Antsearch\Src\Commands\Search::class,
     ];
 
     /**
